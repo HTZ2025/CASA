@@ -1,6 +1,6 @@
 # CASA: Dataset Resources
 
-Dataset resources for **An Evidence-Grounded Multimodal Framework for Proactive Construction Safety Risk Identification and Explainable Reasoning**.
+Dataset resources for **An Evidence-Grounded Multimodal Framework for Proactive Construction Safety Risk Identification and Explainable Reasoning**. The code will be made publicly available upon publication of the paper.
 
 CASA (Construction Anything Scene Assistant) connects object retrieval, construction scene understanding, and safety assessment with object-level visual evidence.
 
