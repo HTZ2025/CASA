@@ -1,12 +1,24 @@
-# CASA: Dataset Resources
+# CASA and CASA-Bench
 
-Dataset resources for **An Evidence-Grounded Multimodal Framework for Proactive Construction Safety Risk Identification and Explainable Reasoning**. The code will be made publicly available upon publication of the paper.
+Dataset resources for **CASA: An evidence-grounded multimodal framework for automated construction safety inspection**.
 
-CASA (Construction Anything Scene Assistant) connects object retrieval, construction scene understanding, and safety assessment with object-level visual evidence.
+CASA (Construction Anything Scene Assistant) lets an inspector locate objects, ask about site activities, and see which workers or machines support a safety judgment. We will release the code upon publication.
 
-This README brings together the four source datasets used in our study. The links below point to the original releases maintained by the dataset authors. CASA-specific annotation refinements are not included in this initial resource index.
+## CASA-Bench
 
-## Dataset Overview
+CASA-Bench evaluates three inspection tasks using scenes from **ConstructionSite 10k** and **Construction Activity Captioning — Dataset II** (called **Activity** in the paper). Its test set contains **24,566 questions across 3,573 images**.
+
+| Task | Test questions | Source |
+|---|---:|---|
+| Object retrieval | 8,997 | ConstructionSite 10k |
+| Safety assessment | 11,996 | ConstructionSite 10k |
+| Scene and activity description | 3,573 | ConstructionSite 10k (2,999) and Activity (574) |
+
+For safety assessment, we reviewed questions where CASA flagged a violation absent from the original label and corrected the label when the scene supported that judgment. We tightened overly broad boxes around the relevant objects and split boxes enclosing several targets into individual boxes. The revised references also include CASA-proposed boxes accepted during review.
+
+## Source datasets and access
+
+The links below provide the original authors’ releases. Section 4.1 of the paper describes the CASA-Bench splits and revised safety annotations. CISv2 and SODA supply separate training and evaluation data for CASA’s perception component.
 
 | Dataset | Source annotations | Role in CASA | Original source |
 |---|---|---|---|
@@ -15,7 +27,7 @@ This README brings together the four source datasets used in our study. The link
 | **ConstructionSite 10k** | Image captions, safety-rule violation annotations with explanations and supporting boxes, and object grounding annotations | Caption adaptation, multi-task instruction tuning, and evaluation of retrieval, safety assessment, and scene description | [Hugging Face dataset](https://huggingface.co/datasets/LouisChen15/ConstructionSite) |
 | **Construction Activity Captioning — Dataset II** | Construction images and natural-language captions | Caption adaptation, instruction tuning, and activity-description evaluation; called **Activity** in our paper | [Author repository](https://github.com/HannahHuanLIU/AEC-image-captioning) |
 
-## 1. CISv2
+### 1. CISv2
 
 The Construction Instance Segmentation dataset provides instance-level annotations for construction workers, materials, and machinery. CASA uses **version 2 (CISv2)**, which supplies both bounding boxes and segmentation masks for perception adaptation.
 
@@ -25,7 +37,7 @@ The Construction Instance Segmentation dataset provides instance-level annotatio
 
 Select the **CISv2** release in the repository and follow the authors' decoding instructions to prepare its images and annotations.
 
-## 2. SODA
+### 2. SODA
 
 SODA (Site Object Detection dAtaset) provides construction-site images with bounding-box annotations for workers, materials, machinery, and site-layout elements. CASA uses SODA as an additional source of box supervision during joint perception adaptation with CISv2.
 
@@ -34,7 +46,7 @@ SODA (Site Object Detection dAtaset) provides construction-site images with boun
 - **Baidu extraction code:** `9cnh`
 - **Original paper:** [SODA: A large-scale open site object detection dataset for deep learning in construction](https://doi.org/10.1016/j.autcon.2022.104499)
 
-## 3. ConstructionSite 10k
+### 3. ConstructionSite 10k
 
 ConstructionSite 10k supports three complementary tasks: image captioning, safety-rule violation question answering, and construction-object grounding.
 
@@ -46,7 +58,7 @@ CASA uses its captions for visual-language adaptation and its task annotations f
 
 To access the dataset files, sign in to Hugging Face and accept the conditions shown on the dataset page.
 
-## 4. Construction Activity Captioning — Dataset II
+### 4. Construction Activity Captioning — Dataset II
 
 The construction-activity image-captioning study releases two datasets. CASA uses **Dataset II**, referred to as **Activity** in our paper, for learning and evaluating descriptions of visible construction activities.
 
